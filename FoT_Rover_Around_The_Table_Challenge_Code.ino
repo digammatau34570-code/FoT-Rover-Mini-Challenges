@@ -1,4 +1,5 @@
 /*
+
 Original Author: Shawn Hettiarachchi
 
 Block: X
@@ -67,6 +68,8 @@ void loop() {
 
   turnLeft90();
 
+  // Turns Rover motors off indefinetly until code is reset or power is switched off and on after the initial code is run
+  
   while (true) {
 
     digitalWrite(MOTOR_DIR_A, LOW);
