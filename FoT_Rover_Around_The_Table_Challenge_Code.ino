@@ -98,7 +98,7 @@ void driveForward(int duration) {
   
 }
 
-void slowDown(){
+void slowDown() {
 
   // Slowing the Chassis Down to Prevent Skid
 
@@ -110,7 +110,7 @@ void slowDown(){
   
 }
 
-void turnLeft90(){
+void turnLeft90() {
 
   // Turning the Chassis 90 Degrees
 
