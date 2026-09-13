@@ -104,6 +104,7 @@ void slowDown(){
   digitalWrite(MOTOR_POWER_B, LOW);
 
   delay(200);
+  
 }
 
 void turnLeft90(){
