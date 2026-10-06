@@ -1,12 +1,14 @@
-/*
+ /*
  * Original Author: Shawn Hettiarachchi
- * Latest Date Modified: 09/09/26
+ * Latest Date Modified: 10/05/26
  * Block X
  */
 
 // Pin Constants
 
-const int TOUCH_SENSOR_PIN = 2;
+const int TOUCH_SENSOR_PIN_A = 2;
+
+const int TOUCH_SENSOR_PIN_B = 6;
 
 const int MOTOR_POWER_A = 3;
 
@@ -25,10 +27,12 @@ const int TURN_TIME = 6000;
 const int MOVE_FORWARD_TIME = 10000;
 
 void setup() {
-  
+
   Serial.begin(9600);  
-  
-  pinMode(TOUCH_SENSOR_PIN, INPUT);
+
+  pinMode(TOUCH_SENSOR_PIN_A, INPUT_PULLUP);
+
+  pinMode(TOUCH_SENSOR_PIN_B, INPUT_PULLUP);
 
   pinMode(MOTOR_POWER_A, OUTPUT);
 
@@ -37,16 +41,18 @@ void setup() {
   pinMode(MOTOR_DIR_A, OUTPUT);
 
   pinMode(MOTOR_DIR_B, OUTPUT);
-  
+
 }
 
 void loop() {
 
   moveForward();
-  
-  int touchState = digitalRead(TOUCH_SENSOR_PIN);
 
-  if (touchState == HIGH) {
+  int touchStateA = digitalRead(TOUCH_SENSOR_PIN_A);
+
+  int touchStateB = digitalRead(TOUCH_SENSOR_PIN_B);
+
+  if (touchStateA == HIGH || touchStateB == HIGH) {
 
     Serial.println("The Sensor is being touched.");
 
@@ -59,15 +65,19 @@ void loop() {
     turnRight90();
 
     moveForward();
-    
-  } else if (touchState == LOW) {
-    
+
+  } if (touchStateA == LOW && touchStateB == LOW) {
+
     Serial.println("The Sensor is untouched.");
 
     moveForward();
+
+  } else {
+    
+    moveForward();
     
   }
-
+  
 }
 
 // Helper Functions
@@ -85,7 +95,7 @@ void moveBack() {
   digitalWrite(MOTOR_DIR_B, LOW);
 
   delay(MOVE_BACK_TIME);
-    
+
 }
 
 void turnLeft90() {
@@ -101,7 +111,7 @@ void turnLeft90() {
   digitalWrite(MOTOR_POWER_B, LOW);
 
   delay(TURN_TIME);
-  
+
 }
 
 void moveForward() {
@@ -113,11 +123,11 @@ void moveForward() {
   digitalWrite(MOTOR_POWER_B, HIGH);
 
   digitalWrite(MOTOR_DIR_A, LOW);
-  
+
   digitalWrite(MOTOR_DIR_B, LOW);
-  
+
   delay(MOVE_FORWARD_TIME);
-  
+
 }
 
 void turnRight90() {
@@ -133,5 +143,6 @@ void turnRight90() {
   digitalWrite(MOTOR_POWER_B, HIGH);
 
   delay(TURN_TIME);
-  
+
 }
+
