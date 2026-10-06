@@ -26,6 +26,8 @@ const int TURN_TIME = 6000;
 
 const int MOVE_FORWARD_TIME = 10000;
 
+const int OBSTACLE_MOVE_FORWARD_TIME = 7000;
+
 void setup() {
 
   Serial.begin(9600);  
@@ -60,7 +62,7 @@ void loop() {
 
     turnLeft90();
 
-    moveForward();
+    obstacleAvoidMoveForward(OBSTACLE_MOVE_FORWARD_TIME);
 
     turnRight90();
 
@@ -126,8 +128,20 @@ void moveForward() {
 
   digitalWrite(MOTOR_DIR_B, LOW);
 
-  delay(MOVE_FORWARD_TIME);
+}
 
+void obstacleAvoidMoveForward(int duration){
+
+ digitalWrite(MOTOR_POWER_A, HIGH);
+
+ digitalWrite(MOTOR_POWER_B, HIGH);
+
+ digitalWrite(MOTOR_DIR_A, LOW);
+
+ digitalWrite(MOTOR_DIR_B, LOW);
+
+ delay(duration);
+ 
 }
 
 void turnRight90() {
