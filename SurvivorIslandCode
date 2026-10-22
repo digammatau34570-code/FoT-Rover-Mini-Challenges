@@ -1,0 +1,50 @@
+
+    currentColor = "Green";
+   
+  }
+
+  else if (value < 45) {
+
+    digitalWrite(LED_PIN, HIGH);
+
+    currentColor = "Blue";
+
+    Serial.println(value);
+
+    Serial.println("Danger! This is Blue!");
+   
+  }
+
+ if (colorStore != currentColor) {
+
+  colorStore = currentColor;
+
+  Serial.print("The current color is:");
+
+  Serial.println(colorStore);
+
+  Serial.print("The value at the time of color change is:");
+
+  Serial.print(value);
+
+  if (colorStore == "Beige") {
+
+    Serial.println("Little Unsafe, this is Beige!");
+   
+  }
+
+  else if (colorStore == "Green") {
+
+    Serial.println("All Good! Green!");
+   
+  }
+
+  else if (colorStore == "Blue") {
+
+    Serial.println("Danger! Blue!");
+   
+  }
+   
+ }
+ 
+}
